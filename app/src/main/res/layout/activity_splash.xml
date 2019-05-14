@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/splashColor"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/splashscreen"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_constraintBottom_toTopOf="@+id/button_google_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/splash_background" />
+
+    <com.shobhitpuri.custombuttons.GoogleSignInButton
+        android:id="@+id/button_google_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:isDarkTheme="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="8dp"
+        android:visibility="gone"/>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

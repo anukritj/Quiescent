@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "91346450244",
+    "firebase_url": "https://quiescent-733e0.firebaseio.com",
+    "project_id": "quiescent-733e0",
+    "storage_bucket": "quiescent-733e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91346450244:android:f02ea002b191a642",
+        "android_client_info": {
+          "package_name": "com.example.anukrit.quiescent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91346450244-d51sbnc1qp5qrqllf24hfaiturfebcra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anukrit.quiescent",
+            "certificate_hash": "49dbdf688fea16a4e74476b88bf8bddef8aa1947"
+          }
+        },
+        {
+          "client_id": "91346450244-72c894p0eck7ravl62ohn0eu0p6jkgp7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSiMF4bcpuXbZN1iuJzDdQeyhZT8q1XzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91346450244-72c894p0eck7ravl62ohn0eu0p6jkgp7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

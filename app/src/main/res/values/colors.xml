@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#303030</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#2e2e2e</color>
+    <color name="card_div_gray">#b6b6b6</color>
+    <color name="grey_400">#bdbdbd</color>
+    <color name="blue_800">#3b50ce</color>
+    <color name="group_gray">#999595</color>
+    <color name="room_join">#646464</color>
+    <color name="white">#FFFFFF</color>
+    <color name="splashColor">#000000</color>
+
+
+</resources>
