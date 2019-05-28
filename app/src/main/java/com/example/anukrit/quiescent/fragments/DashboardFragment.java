@@ -51,11 +51,21 @@ public class DashboardFragment extends Fragment {
     @OnClick(R.id.analytics)
     void checkAnalytics(){
 //        startActivity(AddGroupActivity.makeIntent());
+        AnalyticsFragment analyticsFragment= new AnalyticsFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.navigation_fragment_container, analyticsFragment);
+        ft.commit();
     }
 
     @OnClick(R.id.callibration)
-    void addCallibration(){
+    void addErrorDetection(){
 //        startActivity(AddGroupActivity.makeIntent());
+        ErrorCorrectionFragment errorCorrectionFragment= new ErrorCorrectionFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.navigation_fragment_container, errorCorrectionFragment);
+        ft.commit();
     }
 
     @Override

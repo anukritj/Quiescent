@@ -1,11 +1,13 @@
 package com.example.anukrit.quiescent.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +20,16 @@ import com.example.anukrit.quiescent.data.models.Frequency;
 import com.example.anukrit.quiescent.data.models.Voltage;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
 import com.example.anukrit.quiescent.utils.GeneralUtils;
+import com.example.anukrit.quiescent.utils.MqttHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.DecimalFormat;
 
@@ -31,10 +39,14 @@ public class VoltageFragment extends Fragment {
 
     private static VoltageFragment voltageFragment;
     private static Voltage value;
+    MqttHelper mqttHelper;
+
 
     public  VoltageFragment() {
 
     }
+
+
 
     @Nullable
     @Override
@@ -97,6 +109,12 @@ public class VoltageFragment extends Fragment {
                     DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").setValue(voltage);
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
+
+                startMqtt(getActivity(),et1.getText().toString(),"/channel1/voltage"  );
+                startMqtt(getActivity(),et2.getText().toString(),"/channel2/voltage"  );
+                startMqtt(getActivity(),et3.getText().toString(),"/channel3/voltage"  );
+                startMqtt(getActivity(),et4.getText().toString(),"/channel4/voltage"  );
+
             }
         });
         return rootView;
@@ -168,6 +186,37 @@ public class VoltageFragment extends Fragment {
 
         });
     }
+
+    private void startMqtt(Context context, String message, String topic) {
+        mqttHelper = new MqttHelper(context, message,topic);
+        mqttHelper.setCallback(new MqttCallbackExtended() {
+            @Override
+            public void connectComplete(boolean b, String s) {
+
+            }
+
+            @Override
+            public void connectionLost(Throwable throwable) {
+
+            }
+
+            @Override
+            public void messageArrived(String topic, MqttMessage mqttMessage) {
+                Log.w("Debug", mqttMessage.toString());
+            }
+
+            @Override
+            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+                Log.w("Debug", "Completed");
+                /*try {
+                    mqttHelper.disconnect(mqttHelper.getMqttAndroidClient());
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }*/
+            }
+        });
+    }
+
 
 
 

@@ -64,33 +64,36 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-        new Handler().postDelayed(new Runnable() {
+        if(!isLoggedIn){
+            new Handler().postDelayed(new Runnable() {
 
 
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-//                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-//                startActivity(i);
-//                finish();
-                googleSignInButton.setVisibility(View.VISIBLE);
-            }
-        }, 3000);
+                @Override
+                public void run() {
+                    // This method will be executed once the timer is over
+    //                Intent i = new Intent(SplashActivity.this, MainActivity.class);
+    //                startActivity(i);
+    //                finish();
+                    googleSignInButton.setVisibility(View.VISIBLE);
+                }
+            }, 3000);
 
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                googleSignInButton.setEnabled(false);
+            googleSignInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    googleSignInButton.setEnabled(false);
 
-                // Create and launch sign-in intent
-                startActivityForResult(
-                        AuthUI.getInstance()
-                                .createSignInIntentBuilder()
-                                .setAvailableProviders(providers)
-                                .build(),
-                        RC_SIGN_IN);
-            }
-        });
+                    // Create and launch sign-in intent
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder()
+                                    .setAvailableProviders(providers)
+                                    .build(),
+                            RC_SIGN_IN);
+                }
+            });
+            isLoggedIn=true;
+        }
     }
 
     @Override

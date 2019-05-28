@@ -16,16 +16,19 @@ import com.example.anukrit.quiescent.adapters.TabLayoutAdapter;
 
 import java.util.Objects;
 
-public class SignalGeneratorFragment extends Fragment {
+public class AnalyticsFragment extends Fragment {
 
-    private static SignalGeneratorFragment signalGeneratorFragment;
-    public SignalGeneratorFragment(){
+    private static AnalyticsFragment analyticsFragment;
+    public AnalyticsFragment(){
 
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_signal_generator, container, false);
+
+//        final TextView send=rootView.findViewById(R.id.send);
+//        send.setVisibility(View.INVISIBLE);
         return rootView;
     }
 
@@ -41,7 +44,7 @@ public class SignalGeneratorFragment extends Fragment {
         TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
         TabLayoutAdapter tabLayoutAdapter = new TabLayoutAdapter(Objects.requireNonNull(getChildFragmentManager()));
         ViewPager viewPager = view.findViewById(R.id.viewPager);
-        Log.e("SignalGeneratorFragment", "Entered SignalGeneratorFragment");
+        Log.e("AnalyticsFragment", "Analytics Fragment");
         tabLayoutAdapter.addFragment(voltageFragment, "Voltage");
         tabLayoutAdapter.addFragment(currentFragment, "Current");
         tabLayoutAdapter.addFragment(frequencyFragment, "Frequency");
@@ -54,10 +57,10 @@ public class SignalGeneratorFragment extends Fragment {
         //tab.select();
     }
 
-    public static SignalGeneratorFragment getSignalGeneratorFragment() {
-        if (signalGeneratorFragment == null)
-            signalGeneratorFragment = new SignalGeneratorFragment();
-        return signalGeneratorFragment;
+    public static AnalyticsFragment getAnalyticsFragment() {
+        if (analyticsFragment == null)
+            analyticsFragment = new AnalyticsFragment();
+        return analyticsFragment;
     }
 
 
