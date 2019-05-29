@@ -16,11 +16,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.anukrit.quiescent.R;
-import com.example.anukrit.quiescent.data.models.Frequency;
 import com.example.anukrit.quiescent.data.models.Voltage;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
 import com.example.anukrit.quiescent.utils.GeneralUtils;
-import com.example.anukrit.quiescent.utils.MqttHelper;
+import com.example.anukrit.quiescent.utils.Mqtthelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,18 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.DecimalFormat;
-
-import butterknife.OnClick;
 
 public class VoltageFragment extends Fragment {
 
     private static VoltageFragment voltageFragment;
     private static Voltage value;
-    MqttHelper mqttHelper;
+    Mqtthelper mqttHelper;
 
 
     public  VoltageFragment() {
@@ -61,6 +57,11 @@ public class VoltageFragment extends Fragment {
         final SeekBar sk3 = (SeekBar) rootView.findViewById(R.id.seekBar3);
         final EditText et4=(EditText) rootView.findViewById(R.id.editText4);
         final SeekBar sk4 = (SeekBar) rootView.findViewById(R.id.seekBar4);
+
+        final TextView send1= rootView.findViewById(R.id.send1);
+        final TextView send2= rootView.findViewById(R.id.send2);
+        final TextView send3= rootView.findViewById(R.id.send3);
+        final TextView send4= rootView.findViewById(R.id.send4);
 
 
         final TextView send= rootView.findViewById(R.id.send);
@@ -98,11 +99,11 @@ public class VoltageFragment extends Fragment {
 //        updateEditText((EditText) rootView.findViewById(R.id.editText3),(SeekBar)rootView.findViewById(R.id.seekBar3));
 //        updateEditText((EditText) rootView.findViewById(R.id.editText4),(SeekBar)rootView.findViewById(R.id.seekBar4));
 
-        send.setOnClickListener(new View.OnClickListener() {
+        send1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    Voltage voltage = new Voltage(Float.parseFloat(et1.getText().toString()),
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Voltage voltage=new Voltage(Float.parseFloat(et1.getText().toString()),
                             Float.parseFloat(et2.getText().toString()),
                             Float.parseFloat(et3.getText().toString()),
                             Float.parseFloat(et4.getText().toString()));
@@ -111,9 +112,65 @@ public class VoltageFragment extends Fragment {
                 }
 
                 startMqtt(getActivity(),et1.getText().toString(),"/channel1/voltage"  );
+                Log.w("Voltage in Channel1 :",et1.getText().toString());
+
+
+            }
+        });
+
+        send2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Voltage voltage=new Voltage(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").setValue(voltage);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
                 startMqtt(getActivity(),et2.getText().toString(),"/channel2/voltage"  );
+                Log.w("Voltage in Channel2 :",et2.getText().toString());
+
+
+            }
+        });
+
+        send3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Voltage voltage=new Voltage(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").setValue(voltage);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
                 startMqtt(getActivity(),et3.getText().toString(),"/channel3/voltage"  );
+                Log.w("Voltage in Channel3 :",et3.getText().toString());
+
+
+            }
+        });
+
+        send4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Voltage voltage=new Voltage(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").setValue(voltage);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
                 startMqtt(getActivity(),et4.getText().toString(),"/channel4/voltage"  );
+                Log.w("Voltage in Channel4 :",et4.getText().toString());
+
 
             }
         });
@@ -188,7 +245,7 @@ public class VoltageFragment extends Fragment {
     }
 
     private void startMqtt(Context context, String message, String topic) {
-        mqttHelper = new MqttHelper(context, message,topic);
+        mqttHelper = new Mqtthelper(context, message,topic);
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean b, String s) {
@@ -203,6 +260,7 @@ public class VoltageFragment extends Fragment {
             @Override
             public void messageArrived(String topic, MqttMessage mqttMessage) {
                 Log.w("Debug", mqttMessage.toString());
+                Log.w("Topic on subscribe: ",topic);
             }
 
             @Override

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "91346450244-mmpl7lp80u4jg7qt2n64hdeuc2ms907k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.anukrit.quiescent",
+            "certificate_hash": "49dbdf688fea16a4e74476b88bf8bddef8aa1947"
+          }
+        },
+        {
           "client_id": "91346450244-72c894p0eck7ravl62ohn0eu0p6jkgp7.apps.googleusercontent.com",
           "client_type": 3
         }

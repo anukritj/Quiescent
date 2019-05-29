@@ -19,7 +19,8 @@ import com.example.anukrit.quiescent.R;
 import com.example.anukrit.quiescent.data.models.Current;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
 import com.example.anukrit.quiescent.utils.GeneralUtils;
-import com.example.anukrit.quiescent.utils.MqttHelper;
+import com.example.anukrit.quiescent.utils.Mqtthelper;
+import com.example.anukrit.quiescent.utils.MqttHelperSubscribe;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.DecimalFormat;
@@ -34,7 +36,17 @@ import java.text.DecimalFormat;
 public class Currentfragment extends Fragment {
     private static Currentfragment currentFragment;
     private static Current value;
-    MqttHelper mqttHelper;
+    Mqtthelper mqttHelper;
+    MqttHelperSubscribe mqttHelperSubscribe;
+
+    EditText et1;
+     SeekBar sk1 ;
+     EditText et2;
+     SeekBar sk2;
+     EditText et3;
+     SeekBar sk3;
+     EditText et4;
+     SeekBar sk4 ;
 
 
     public Currentfragment() {
@@ -47,16 +59,20 @@ public class Currentfragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_current, container, false);
 
-        final EditText et1=(EditText) rootView.findViewById(R.id.editText1);
-        final SeekBar sk1 = (SeekBar) rootView.findViewById(R.id.seekBar1);
-        final EditText et2=(EditText) rootView.findViewById(R.id.editText2);
-        final SeekBar sk2 = (SeekBar) rootView.findViewById(R.id.seekBar2);
-        final EditText et3=(EditText) rootView.findViewById(R.id.editText3);
-        final SeekBar sk3 = (SeekBar) rootView.findViewById(R.id.seekBar3);
-        final EditText et4=(EditText) rootView.findViewById(R.id.editText4);
-        final SeekBar sk4 = (SeekBar) rootView.findViewById(R.id.seekBar4);
+         et1=(EditText) rootView.findViewById(R.id.editText1);
+        sk1 = (SeekBar) rootView.findViewById(R.id.seekBar1);
+        et2=(EditText) rootView.findViewById(R.id.editText2);
+         sk2 = (SeekBar) rootView.findViewById(R.id.seekBar2);
+         et3=(EditText) rootView.findViewById(R.id.editText3);
+         sk3 = (SeekBar) rootView.findViewById(R.id.seekBar3);
+         et4=(EditText) rootView.findViewById(R.id.editText4);
+         sk4 = (SeekBar) rootView.findViewById(R.id.seekBar4);
 
-        final TextView send= rootView.findViewById(R.id.send);
+        final TextView send1= rootView.findViewById(R.id.send1);
+        final TextView send2= rootView.findViewById(R.id.send2);
+        final TextView send3= rootView.findViewById(R.id.send3);
+        final TextView send4= rootView.findViewById(R.id.send4);
+
 
         DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Current").addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,27 +93,26 @@ public class Currentfragment extends Fragment {
 
 
 
+//            startMqttSubscribe(getActivity(), "/channell/cur1");
+//            startMqttSubscribe(getActivity(), "/channel2/cur2");
+//            startMqttSubscribe(getActivity(), "/channel3/cur3");
+//            startMqttSubscribe(getActivity(), "/channel4/cur4");
+//
 
         updateSeekbar(et1,sk1);
         updateSeekbar(et2,sk2);
         updateSeekbar(et3,sk3);
         updateSeekbar(et4,sk4);
 
-        /*updateSeekbar((EditText) rootView.findViewById(R.id.editText2),(SeekBar)rootView.findViewById(R.id.seekBar2));
-        updateSeekbar((EditText) rootView.findViewById(R.id.editText3),(SeekBar)rootView.findViewById(R.id.seekBar3));
-        updateSeekbar((EditText) rootView.findViewById(R.id.editText4),(SeekBar)rootView.findViewById(R.id.seekBar4));
-*/
+
+
         updateEditText(et1,sk1);
         updateEditText(et2,sk2);
         updateEditText(et3,sk3);
         updateEditText(et4,sk4);
 
-       /* updateEditText((EditText) rootView.findViewById(R.id.editText2),(SeekBar)rootView.findViewById(R.id.seekBar2));
-        updateEditText((EditText) rootView.findViewById(R.id.editText3),(SeekBar)rootView.findViewById(R.id.seekBar3));
-        updateEditText((EditText) rootView.findViewById(R.id.editText4),(SeekBar)rootView.findViewById(R.id.seekBar4));
-*/
 
-        send.setOnClickListener(new View.OnClickListener() {
+        send1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(FirebaseAuth.getInstance().getCurrentUser()!=null){
@@ -109,13 +124,65 @@ public class Currentfragment extends Fragment {
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
 
-               // startMqtt(getActivity(),et1.getText().toString(),"/channel1/current"  );
-                Log.w("Current ki bakchodi:",et3.getText().toString());
-                //startMqtt(getActivity(),et2.getText().toString(),"/channel2/current"  );
-               startMqtt(getActivity(),et3.getText().toString(),"/channel3/current"  );
-                //startMqtt(getActivity(),et4.getText().toString(),"/channel4/current"  );
+                startMqtt(getActivity(),et1.getText().toString(),"/channel1/current"  );
+                Log.w("Current in Channel1 :",et1.getText().toString());
 
 
+            }
+        });
+
+        send2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Current current=new Current(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Current").setValue(current);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
+                startMqtt(getActivity(),et2.getText().toString(),"/channel2/current"  );
+                Log.w("Current in Channel2 :",et2.getText().toString());
+
+
+            }
+        });
+
+        send3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Current current=new Current(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Current").setValue(current);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
+                startMqtt(getActivity(),et3.getText().toString(),"/channel3/current"  );
+                Log.w("Current in Channel3 :",et3.getText().toString());
+
+
+            }
+        });
+
+        send4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                    Current current=new Current(Float.parseFloat(et1.getText().toString()),
+                            Float.parseFloat(et2.getText().toString()),
+                            Float.parseFloat(et3.getText().toString()),
+                            Float.parseFloat(et4.getText().toString()));
+                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Current").setValue(current);
+                    GeneralUtils.toast(getContext(), "Value sent");
+                }
+
+                startMqtt(getActivity(),et4.getText().toString(),"/channel4/current"  );
+                Log.w("Current in Channel4 :",et4.getText().toString());
 
 
             }
@@ -190,7 +257,7 @@ public class Currentfragment extends Fragment {
     }
 
     private void startMqtt(Context context, String message, String topic) {
-        mqttHelper = new MqttHelper(context, message,topic);
+        mqttHelper = new Mqtthelper(context, message,topic);
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean b, String s) {
@@ -217,6 +284,47 @@ public class Currentfragment extends Fragment {
                 }*/
             }
         });
+    }
+
+    private void startMqttSubscribe(Context context, String topic) {
+        mqttHelperSubscribe = new MqttHelperSubscribe(context,topic);
+//        while(mqttHelperSubscribe.getMqttAndroidClient().isConnected()){
+            mqttHelperSubscribe.setCallback(new MqttCallbackExtended() {
+                @Override
+                public void connectComplete(boolean b, String s) {
+
+                }
+
+                @Override
+                public void connectionLost(Throwable throwable) {
+
+                }
+
+                @Override
+                public void messageArrived(String topic, MqttMessage mqttMessage) {
+                    Log.w("Debug", mqttMessage.toString());
+                    Log.w("Subscribe Topic: ", topic);
+                    if(topic.equals("/channel2/cur2")){
+                        et2.setText(mqttMessage.toString());
+                    }
+
+
+                }
+
+                @Override
+                public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
+                    Log.w("Debug", "Completed");
+                    try {
+                        mqttHelper.disconnect(mqttHelper.getMqttAndroidClient());
+                    } catch (
+                            MqttException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                });
+
+        //}
     }
 
 

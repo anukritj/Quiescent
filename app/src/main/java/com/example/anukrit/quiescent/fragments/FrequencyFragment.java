@@ -19,7 +19,7 @@ import com.example.anukrit.quiescent.R;
 import com.example.anukrit.quiescent.data.models.Frequency;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
 import com.example.anukrit.quiescent.utils.GeneralUtils;
-import com.example.anukrit.quiescent.utils.MqttHelper;
+import com.example.anukrit.quiescent.utils.Mqtthelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.text.DecimalFormat;
@@ -38,7 +37,7 @@ public class FrequencyFragment extends Fragment {
 
     private static FrequencyFragment frequencyFragment;
     private static Frequency value;
-    MqttHelper mqttHelper;
+    Mqtthelper mqttHelper;
 
 
     public  FrequencyFragment () {
@@ -193,7 +192,7 @@ public class FrequencyFragment extends Fragment {
     }
 
     private void startMqtt(Context context, String message, String topic) {
-        mqttHelper = new MqttHelper(context, message,topic);
+        mqttHelper = new Mqtthelper(context, message,topic);
         mqttHelper.setCallback(new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean b, String s) {

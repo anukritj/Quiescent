@@ -19,15 +19,16 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.io.UnsupportedEncodingException;
 
-public class MqttHelper {
+public class Mqtthelper {
 
     private String message;
     private String topic;
+    private String subscriptionTopic;
 
     private MqttAndroidClient mqttAndroidClient;
     private final String serverUri = "tcp://m2m.eclipse.org:1883"; // TODO: change this
 
-    public MqttHelper(Context context, String message, String topic){
+    public Mqtthelper(Context context, String message, String topic){
         String clientId = "ExampleAndroidClient";
         this.message=message;
         this.topic=topic;
@@ -54,14 +55,16 @@ public class MqttHelper {
 
             }
         });
-        connect();
+        connectForPublish();
     }
+
+
 
     public void setCallback(MqttCallbackExtended callback) {
         mqttAndroidClient.setCallback(callback);
     }
 
-    private void connect(){
+    private void connectForPublish(){
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
         mqttConnectOptions.setCleanSession(false);
@@ -85,7 +88,7 @@ public class MqttHelper {
                     //subscribeToTopic();
 
                     try {
-                        publishMessage(mqttAndroidClient,message,2,topic);
+                        publishMessage(mqttAndroidClient,message,0,topic);
                     } catch (MqttException e) {
                         e.printStackTrace();
                     } catch (UnsupportedEncodingException e) {
@@ -95,7 +98,7 @@ public class MqttHelper {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Log.w("Mqtt", "Failed to connect to: " + serverUri + exception.toString());
+                    Log.w("Mqtt: OnFailureCalled", "Failed to connect to: " + serverUri + exception.toString());
                 }
             });
 
@@ -106,26 +109,6 @@ public class MqttHelper {
     }
 
 
-    private void subscribeToTopic() {
-        try {
-            String subscriptionTopic = "/cc32xx/ButtonPressEvtSw2";                                                      // TODO: change this
-            mqttAndroidClient.subscribe(subscriptionTopic, 0, null, new IMqttActionListener() {
-                @Override
-                public void onSuccess(IMqttToken asyncActionToken) {
-                    Log.w("Mqtt","Subscribed!");
-                }
-
-                @Override
-                public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Log.w("Mqtt", "Subscribed fail!");
-                }
-            });
-
-        } catch (MqttException ex) {
-            System.err.println("Exceptionst subscribing");
-            ex.printStackTrace();
-        }
-    }
 
     private void publishMessage(@NonNull MqttAndroidClient client,
                                @NonNull String msg, int qos, @NonNull String topic)
@@ -137,9 +120,10 @@ public class MqttHelper {
         message.setRetained(true);
         message.setQos(qos);
         client.publish(topic, message);
+        disconnect(mqttAndroidClient);
     }
 
-   /* public void disconnect(@NonNull MqttAndroidClient client)
+    public void disconnect(@NonNull MqttAndroidClient client)
             throws MqttException {
         IMqttToken mqttToken = client.disconnect();
         mqttToken.setActionCallback(new IMqttActionListener() {
@@ -152,22 +136,9 @@ public class MqttHelper {
                 Log.d("MQTT", "Failed to disconnected " + throwable.toString());
             }
         });
-    }*/
-
-    public void unSubscribe(@NonNull MqttAndroidClient client,
-                            @NonNull final String topic) throws MqttException {
-        IMqttToken token = client.unsubscribe(topic);
-        token.setActionCallback(new IMqttActionListener() {
-            @Override
-            public void onSuccess(IMqttToken iMqttToken) {
-                Log.d("Unsubscribe", "UnSubscribe Successfully " + topic);
-            }
-            @Override
-            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
-                Log.e("Unsubscribe", "UnSubscribe Failed " + topic);
-            }
-        });
     }
+
+
 
     public MqttAndroidClient getMqttAndroidClient() {
         return mqttAndroidClient;

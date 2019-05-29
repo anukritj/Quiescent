@@ -29,6 +29,25 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
 
+        <TextView
+            android:id="@+id/send1"
+            android:layout_width="59dp"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="234dp"
+            android:layout_marginLeft="234dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/textView1"
+            android:layout_toRightOf="@id/textView1"
+            android:background="@drawable/join_check_background"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:text="Send"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
 
             <EditText
             android:id="@+id/editText1"
@@ -78,6 +97,25 @@
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/send2"
+            android:layout_width="59dp"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="234dp"
+            android:layout_marginLeft="234dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_toRightOf="@id/textView2"
+            android:background="@drawable/join_check_background"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:text="Send"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
 
 
         <EditText
@@ -129,6 +167,25 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
 
+        <TextView
+            android:id="@+id/send3"
+            android:layout_width="59dp"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="234dp"
+            android:layout_marginLeft="234dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/textView3"
+            android:layout_toRightOf="@id/textView3"
+            android:background="@drawable/join_check_background"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:text="Send"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
+
 
         <EditText
             android:id="@+id/editText3"
@@ -179,6 +236,24 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp" />
 
+        <TextView
+            android:id="@+id/send4"
+            android:layout_width="59dp"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="234dp"
+            android:layout_marginLeft="234dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/textView4"
+            android:layout_toRightOf="@id/textView4"
+            android:background="@drawable/join_check_background"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:text="Send"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/editText4"
@@ -211,23 +286,6 @@
 
 
     </RelativeLayout>
-        <TextView
-            android:id="@+id/send"
-            android:layout_width="98dp"
-            android:layout_height="46dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/join_check_background"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
-            android:text="Send"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:visibility="visible"
-            android:hapticFeedbackEnabled="true"
-
-            />
 
 
 </LinearLayout>
