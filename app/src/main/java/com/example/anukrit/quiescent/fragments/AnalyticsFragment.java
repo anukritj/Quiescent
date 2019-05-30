@@ -39,6 +39,8 @@ public class AnalyticsFragment extends Fragment {
         VoltageAnalyticsFragment voltageAnalyticsFragment = new VoltageAnalyticsFragment();
         CurrentAnalyticsFragment currentAnalyticsFragment = new CurrentAnalyticsFragment();
         FrequencyFragment frequencyFragment = new FrequencyFragment();
+        ErrorDetectionFragment errorDetectionFragment=new ErrorDetectionFragment();
+        SignalConverterFragment signalConverterFragment=new SignalConverterFragment();
 
 
         TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
@@ -47,7 +49,11 @@ public class AnalyticsFragment extends Fragment {
         Log.e("AnalyticsFragment", "Analytics Fragment");
         tabLayoutAdapter.addFragment(voltageAnalyticsFragment, "Voltage");
         tabLayoutAdapter.addFragment(currentAnalyticsFragment, "Current");
-        tabLayoutAdapter.addFragment(frequencyFragment, "Frequency");
+//        tabLayoutAdapter.addFragment(frequencyFragment, "Frequency");
+        tabLayoutAdapter.addFragment(errorDetectionFragment, "Detection");
+        tabLayoutAdapter.addFragment(signalConverterFragment, "Converter");
+
+
 
 
         viewPager.setAdapter(tabLayoutAdapter);

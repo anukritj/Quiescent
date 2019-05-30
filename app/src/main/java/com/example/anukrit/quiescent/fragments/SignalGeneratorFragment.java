@@ -36,6 +36,7 @@ public class SignalGeneratorFragment extends Fragment {
         VoltageFragment voltageFragment = new VoltageFragment();
         Currentfragment currentFragment = new Currentfragment();
         FrequencyFragment frequencyFragment = new FrequencyFragment();
+        ErrorCorrectionFragment errorCorrectionFragment=new ErrorCorrectionFragment();
 
 
         TabLayout tabLayout = (TabLayout)view.findViewById(R.id.tabLayout);
@@ -45,6 +46,8 @@ public class SignalGeneratorFragment extends Fragment {
         tabLayoutAdapter.addFragment(voltageFragment, "Voltage");
         tabLayoutAdapter.addFragment(currentFragment, "Current");
         tabLayoutAdapter.addFragment(frequencyFragment, "Frequency");
+        tabLayoutAdapter.addFragment(errorCorrectionFragment, "Correction");
+
 
 
         viewPager.setAdapter(tabLayoutAdapter);

@@ -36,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInButton googleSignInButton;
     private SharedPreferences shared ;
-    private boolean isLoggedIn = false;
+    public static boolean isLoggedIn = false;
     private ProgressDialog progressDialog;
 
 
@@ -82,11 +82,13 @@ public class SplashActivity extends AppCompatActivity {
                             shared.edit().putBoolean("loggedIn",false).apply();
                     }
                      else
-                    googleSignInButton.setVisibility(View.VISIBLE);
+                         googleSignInButton.setVisibility(View.VISIBLE);
 
                 }
             }, 3000);
 
+
+        //googleSignInButton.setVisibility(View.VISIBLE);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -103,13 +105,13 @@ public class SplashActivity extends AppCompatActivity {
                 }
             });
             isLoggedIn=true;
-//        }
+//       }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-       /* if(isLoggedIn){
+      /* if(isLoggedIn){
             FirebaseUser currentUser  = mAuth.getCurrentUser();
             if(currentUser != null)
                 updateUI(currentUser);
@@ -182,6 +184,7 @@ public class SplashActivity extends AppCompatActivity {
         if (progressDialog!=null && progressDialog.isShowing())
             progressDialog.dismiss();
     }
+
 
 
 

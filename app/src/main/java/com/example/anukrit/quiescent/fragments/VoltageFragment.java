@@ -16,6 +16,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.anukrit.quiescent.R;
+import com.example.anukrit.quiescent.data.models.ErrorDetection.VoltageError0;
 import com.example.anukrit.quiescent.data.models.Voltage;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
 import com.example.anukrit.quiescent.utils.GeneralUtils;
@@ -35,6 +36,7 @@ public class VoltageFragment extends Fragment {
 
     private static VoltageFragment voltageFragment;
     private static Voltage value;
+    private String desiredVoltage;
     Mqtthelper mqttHelper;
 
 
@@ -62,6 +64,7 @@ public class VoltageFragment extends Fragment {
         final TextView send2= rootView.findViewById(R.id.send2);
         final TextView send3= rootView.findViewById(R.id.send3);
         final TextView send4= rootView.findViewById(R.id.send4);
+        final TextView update= rootView.findViewById(R.id.update);
 
 
         final TextView send= rootView.findViewById(R.id.send);
@@ -74,6 +77,19 @@ public class VoltageFragment extends Fragment {
                 initialize(et2,value.v2);
                 initialize(et3,value.v3);
                 initialize(et4,value.v4);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Failed to read value
+            }
+        });
+
+        DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Error Detection").child("V0").child("Desired").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                desiredVoltage = dataSnapshot.getValue(String.class);
+
             }
 
             @Override
@@ -170,6 +186,22 @@ public class VoltageFragment extends Fragment {
 
                 startMqtt(getActivity(),et4.getText().toString(),"/channel4/voltage"  );
                 Log.w("Voltage in Channel4 :",et4.getText().toString());
+
+
+            }
+        });
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+//                    VoltageError0 voltage=new VoltageError0()
+//                    DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").setValue(voltage);
+//                    GeneralUtils.toast(getContext(), "Value sent");
+//                }
+
+                startMqtt(getActivity(),ErrorCorrectionFragment.getDesiredVoltage(),"/channel1/desired_voltage"  );
+                Log.w("Desired Voltage :",et4.getText().toString());
 
 
             }

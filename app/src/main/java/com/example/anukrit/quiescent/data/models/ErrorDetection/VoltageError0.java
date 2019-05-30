@@ -6,7 +6,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class VoltageError0 {
 
     public String actual;
-    public String desired;
+    public static String desired;
     public String error;
 
     public VoltageError0(){
@@ -19,4 +19,27 @@ public class VoltageError0 {
         this.error=error;
     }
 
+    public void setActual(String actual) {
+        this.actual = actual;
+    }
+
+    public void setDesired(String desired) {
+        this.desired = desired;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getActual() {
+        return actual;
+    }
+
+    public static String getDesired() {
+        return desired;
+    }
+
+    public String getError() {
+        return error;
+    }
 }

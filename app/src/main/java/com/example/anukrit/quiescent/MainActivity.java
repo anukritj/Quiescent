@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import com.example.anukrit.quiescent.fragments.DashboardFragment;
 import com.example.anukrit.quiescent.fragments.HomeFragment;
+import com.example.anukrit.quiescent.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
     private final DashboardFragment dashboardFragment= DashboardFragment.getDashboardFragment();
     private final HomeFragment homeFragment= HomeFragment.getHomeFragment();
+    private final ProfileFragment profileFragment=ProfileFragment.getProfileFragment();
     public static Fragment fragment;
 
 
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 /*case R.id.navigation_notifications:
                     return true;*/
                 case R.id.navigation_profile:
+                    if(fragment!=profileFragment)
+                        replaceFragment(profileFragment);
                     return true;
             }
             return false;

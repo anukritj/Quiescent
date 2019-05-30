@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+   <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="413dp"
         android:layout_height="55dp"
@@ -32,7 +32,7 @@
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:id="@+id/toolbar_title" />
-    </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>-->
 
     <TableLayout
         android:id="@+id/error"
@@ -53,13 +53,13 @@
         <TableRow
 
             android:id="@+id/tableRow"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="105dp"
             android:layout_weight="1"
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -69,18 +69,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="Actual"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
+
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -89,15 +81,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="Error"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
+
         </TableRow>
 
         <TableRow
@@ -107,7 +91,7 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -116,22 +100,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/actual_v0"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="22sp"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
             <EditText
-                android:hint="Enter"
+                android:hint ="Enter"
                 android:id="@+id/desired_v0"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
                 android:inputType="numberDecimal"
@@ -139,16 +115,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/error_v0"
-                android:textSize="22sp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         </TableRow>
 
         <TableRow
@@ -158,7 +124,7 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
                 android:layout_weight="1"
@@ -168,21 +134,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="22sp"
-                android:id="@+id/actual_v1"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
             <EditText
                 android:hint="Enter"
                 android:id="@+id/desired_v1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -191,16 +148,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="22sp"
-                android:id="@+id/error_v1"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         </TableRow>
 
         <TableRow
@@ -210,7 +158,7 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="22sp"
@@ -220,21 +168,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/actual_i2"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:textSize="22sp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
             <EditText
                 android:hint="Enter"
                 android:id="@+id/desired_i2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -243,16 +182,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/error_i2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:textSize="22sp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         </TableRow>
 
 
@@ -263,7 +193,7 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -273,21 +203,12 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/actual_i3"
-                android:layout_weight="1"
-                android:textSize="22sp"
-                android:background="@drawable/cell_shape"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
 
             <EditText
                 android:hint="Enter"
                 android:id="@+id/desired_i3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/cell_shape"
@@ -296,30 +217,13 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/error_i3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/cell_shape"
-                android:textSize="22sp"
-                android:padding="5dp"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
         </TableRow>
 
 
     </TableLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 
     <TextView
         android:id="@+id/send"

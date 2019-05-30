@@ -70,7 +70,7 @@ public class CurrentAnalyticsFragment extends Fragment {
             }
         });
 
-           startMqttSubscribe(getActivity(), "/channell/cur1");
+           startMqttSubscribe(getActivity(), "/channel1/cur1");
            startMqttSubscribe(getActivity(), "/channel2/cur2");
             startMqttSubscribe(getActivity(), "/channel3/cur3");
             startMqttSubscribe(getActivity(), "/channel4/cur4");
@@ -101,7 +101,10 @@ public class CurrentAnalyticsFragment extends Fragment {
                 public void messageArrived(String topic, MqttMessage mqttMessage) {
                     Log.w("Debug", mqttMessage.toString());
                     Log.w("Subscribe Topic: ", topic);
-                    if(topic.equals("/channel2/cur2")){
+                    if(topic.equals("/channel1/cur1")){
+                        channel1.setText(mqttMessage.toString());
+                    }
+                    else if(topic.equals("/channel2/cur2")){
                         channel2.setText(mqttMessage.toString());
                     }
                     else  if(topic.equals("/channel3/cur3")){
@@ -132,7 +135,7 @@ public class CurrentAnalyticsFragment extends Fragment {
         try {
 
             if(mqttHelperSubscribe.getMqttAndroidClient()!=null) {
-                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channell/cur1");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel1/cur1");
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel2/cur2");
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel3/cur3");
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel4/cur4");

@@ -40,11 +40,17 @@ public class DashboardFragment extends Fragment {
         ft.commit();
     }
 
-   /* @OnClick(R.id.signal_converter)
-    void convertSignal(){
+    /*@OnClick(R.id.error_correction)
+    void errorCorrection(){
 //        startActivity(GroupDetailsActivity.makeIntent());
-    }*/
+        ErrorCorrectionFragment errorCorrectionFragment=new ErrorCorrectionFragment();
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.navigation_fragment_container, errorCorrectionFragment);
+        ft.commit();
 
+    }
+*/
     @OnClick(R.id.analytics)
     void checkAnalytics(){
 //        startActivity(AddGroupActivity.makeIntent());
@@ -55,7 +61,7 @@ public class DashboardFragment extends Fragment {
         ft.commit();
     }
 
-    @OnClick(R.id.callibration)
+    /*@OnClick(R.id.callibration)
     void addErrorDetection(){
 //        startActivity(AddGroupActivity.makeIntent());
         ErrorDetectionFragment errorDetectionFragment = new ErrorDetectionFragment();
@@ -63,7 +69,7 @@ public class DashboardFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.navigation_fragment_container, errorDetectionFragment);
         ft.commit();
-    }
+    }*/
 
     @Override
     public void onResume() {

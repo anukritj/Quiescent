@@ -9,13 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.anukrit.quiescent.R;
 import com.example.anukrit.quiescent.data.models.Current;
 import com.example.anukrit.quiescent.data.models.Voltage;
 import com.example.anukrit.quiescent.utils.DatabaseUtils;
+import com.example.anukrit.quiescent.utils.GeneralUtils;
 import com.example.anukrit.quiescent.utils.MqttHelperSubscribe;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -34,6 +37,9 @@ public class VoltageAnalyticsFragment extends Fragment {
     TextView channel2;
     TextView channel3;
     TextView channel4;
+    public static String actualV0;
+    public static String errorV0;
+
 
 
     public VoltageAnalyticsFragment(){
@@ -49,6 +55,7 @@ public class VoltageAnalyticsFragment extends Fragment {
         channel2= rootView.findViewById(R.id.channel2);
         channel3= rootView.findViewById(R.id.channel3);
         channel4= rootView.findViewById(R.id.channel4);
+        final Button update=rootView.findViewById(R.id.update);
 
         DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Voltage").addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,10 +75,13 @@ public class VoltageAnalyticsFragment extends Fragment {
             }
         });
 
-        startMqttSubscribe(getActivity(), "/channell/vol1");
+        startMqttSubscribe(getActivity(), "/channel1/vol1");
         startMqttSubscribe(getActivity(), "/channel2/vol2");
         startMqttSubscribe(getActivity(), "/channel3/vol3");
         startMqttSubscribe(getActivity(), "/channel4/vol4");
+        startMqttSubscribe(getActivity(),"/channel1/actual");
+        startMqttSubscribe(getActivity(),"/channel1/error");
+
         return rootView;
     }
 
@@ -111,7 +121,19 @@ public class VoltageAnalyticsFragment extends Fragment {
                 else  if(topic.equals("/channel4/vol4")){
                     channel4.setText(mqttMessage.toString());
                 }
+                else if(topic.equals("channel1/actual")){
+                    if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                        DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Error Detection").child("V0").child("Actual").setValue(mqttMessage.toString());
+                    }
+                    actualV0=mqttMessage.toString();
 
+                }
+                else if(topic.equals("channel1/error")){
+                    if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+                        DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Error Detection").child("V0").child("Error").setValue(mqttMessage.toString());
+                    }
+                    errorV0=mqttMessage.toString();
+                }
 
 
             }
@@ -137,11 +159,22 @@ public class VoltageAnalyticsFragment extends Fragment {
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel2/vol2");
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel3/vol3");
                 mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel4/vol4");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel1/actual");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel1/error");
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         super.onDestroy();
+    }
+
+    public static String getActualV0() {
+        return actualV0;
+    }
+
+    public static String getErrorV0() {
+        return errorV0;
     }
 }

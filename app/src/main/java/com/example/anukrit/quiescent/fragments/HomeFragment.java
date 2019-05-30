@@ -69,17 +69,16 @@ public class HomeFragment extends Fragment {
     }
     //..
     private void prepareGroupData() {
-        details.add(new RoomDetailsModel("Appliance 1","1",R.drawable.multimeter));
-        details.add(new RoomDetailsModel("Appliance 2","3",R.drawable.vending));
-        details.add(new RoomDetailsModel("Appliance 3","2",R.drawable.press));
-        details.add(new RoomDetailsModel("Appliance 4","4",R.drawable.sauce));
-        details.add(new RoomDetailsModel("Appliance 5","1",R.drawable.machine5));
-        details.add(new RoomDetailsModel("Appliance 6","1",R.drawable.milling));
-        details.add(new RoomDetailsModel("Appliance 7","3",R.drawable.cnc));
-        details.add(new RoomDetailsModel("Appliance 8","2",R.drawable.meat));
-        details.add(new RoomDetailsModel("Appliance 9","1",R.drawable.ice));
+        details.add(new RoomDetailsModel("Cabin Air Pressure","1",R.drawable.cabin));
+        details.add(new RoomDetailsModel("Level Sensing","1",R.drawable.ice));
+        details.add(new RoomDetailsModel("Leak Detection","1",R.drawable.leaks));
+        details.add(new RoomDetailsModel("Volumetric Flow Controllers","1",R.drawable.sauce));
+        details.add(new RoomDetailsModel("Temperature Controller","1",R.drawable.machine5));
+        details.add(new RoomDetailsModel("Baggage Counter","1",R.drawable.baggage));
+        details.add(new RoomDetailsModel("Containers Scanner","1",R.drawable.cnc));
+        details.add(new RoomDetailsModel("Encoders","1",R.drawable.encoder));
+        details.add(new RoomDetailsModel("CNC/NC","1",R.drawable.cnc));
 
-        details.add(new RoomDetailsModel("Appliance 10","3",R.drawable.fabric));
 
 
 

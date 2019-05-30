@@ -26,7 +26,7 @@ public class Mqtthelper {
     private String subscriptionTopic;
 
     private MqttAndroidClient mqttAndroidClient;
-    private final String serverUri = "tcp://m2m.eclipse.org:1883"; // TODO: change this
+    private final String serverUri = "tcp://test.mosquitto.org:1883"; // TODO: change this
 
     public Mqtthelper(Context context, String message, String topic){
         String clientId = "ExampleAndroidClient";
