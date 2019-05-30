@@ -125,9 +125,11 @@ public class Currentfragment extends Fragment {
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
 
-
-                startMqtt(getActivity(),et1.getText().toString(),"/channel1/current"  );
-                Log.w("Current in Channel1 :",et1.getText().toString());
+                if(checkConstraints(Integer.parseInt(et1.getText().toString()))){
+                    startMqtt(getActivity(), et1.getText().toString(), "/channel1/current");
+                    Log.w("Current in Channel1 :", et1.getText().toString());
+                }
+                else GeneralUtils.toastLong(getActivity(),"Invalid: Enter a value between 4 to 20 mA");
 
 
             }
@@ -145,8 +147,12 @@ public class Currentfragment extends Fragment {
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
 
-                startMqtt(getActivity(),et2.getText().toString(),"/channel2/current"  );
-                Log.w("Current in Channel2 :",et2.getText().toString());
+                if(checkConstraints(Integer.parseInt(et2.getText().toString()))){
+                    startMqtt(getActivity(), et2.getText().toString(), "/channel2/current");
+                    Log.w("Current in Channel2 :", et2.getText().toString());
+                }
+                else GeneralUtils.toastLong(getActivity(),"Invalid: Enter a value between 4 to 20 mA");
+
 
 
             }
@@ -164,8 +170,13 @@ public class Currentfragment extends Fragment {
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
 
-                startMqtt(getActivity(),et3.getText().toString(),"/channel3/current"  );
-                Log.w("Current in Channel3 :",et3.getText().toString());
+                if(checkConstraints(Integer.parseInt(et3.getText().toString()))) {
+
+                    startMqtt(getActivity(), et3.getText().toString(), "/channel3/current");
+                    Log.w("Current in Channel3 :", et3.getText().toString());
+                }
+                else GeneralUtils.toastLong(getActivity(),"Invalid: Enter a value between 4 to 20 mA");
+
 
 
             }
@@ -183,8 +194,12 @@ public class Currentfragment extends Fragment {
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
 
-                startMqtt(getActivity(),et4.getText().toString(),"/channel4/current"  );
-                Log.w("Current in Channel4 :",et4.getText().toString());
+                if(checkConstraints(Integer.parseInt(et4.getText().toString()))) {
+                    startMqtt(getActivity(), et4.getText().toString(), "/channel4/current");
+                    Log.w("Current in Channel4 :", et4.getText().toString());
+                }
+                else GeneralUtils.toastLong(getActivity(),"Invalid: Enter a value between 4 to 20 mA");
+
 
 
             }
@@ -346,5 +361,10 @@ public class Currentfragment extends Fragment {
             e.printStackTrace();
         }
         super.onDestroy();
+    }
+
+    private boolean checkConstraints(int value){
+        if (value>=4 && value<=20) return true;
+        return false;
     }
 }

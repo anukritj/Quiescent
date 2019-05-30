@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="fill_parent"
@@ -8,13 +9,17 @@
     android:orientation="vertical">
 
 
-    <ImageView
+    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/splashscreen"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:layout_constraintBottom_toTopOf="@+id/button_google_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/splash_background" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/splash_background"
+        app:layout_constraintBottom_toTopOf="@+id/button_google_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.shobhitpuri.custombuttons.GoogleSignInButton
         android:id="@+id/button_google_login"

@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
                     if(fragment!=dashboardFragment)
                         replaceFragment(dashboardFragment);
                     return true;
-                case R.id.navigation_notifications:
-                    return true;
+                /*case R.id.navigation_notifications:
+                    return true;*/
                 case R.id.navigation_profile:
                     return true;
             }

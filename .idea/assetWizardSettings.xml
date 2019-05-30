@@ -18,12 +18,24 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="-5" />
+                                                <entry key="color" value="000000" />
+                                                <entry key="paddingPercent" value="10" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,8 +46,71 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/im2016110166df-300dpi-2126x1417-300dpi.jpeg" />
-                                      <entry key="outputName" value="temp_background" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/credit-card.png" />
+                                      <entry key="outputName" value="correction" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcherLegacy">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="notification">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                 </PersistentState>

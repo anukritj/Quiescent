@@ -7,24 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.example.anukrit.quiescent.R;
-import com.example.anukrit.quiescent.data.models.Current;
 import com.example.anukrit.quiescent.data.models.ErrorDetection.CurrentError2;
 import com.example.anukrit.quiescent.data.models.ErrorDetection.CurrentError3;
 import com.example.anukrit.quiescent.data.models.ErrorDetection.VoltageError0;
 import com.example.anukrit.quiescent.data.models.ErrorDetection.VoltageError1;
-import com.example.anukrit.quiescent.utils.DatabaseUtils;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
-public class ErrorCorrectionFragment extends Fragment {
+public class ErrorDetectionFragment extends Fragment {
 
-    public static ErrorCorrectionFragment errorCorrectionFragment;
+    public static ErrorDetectionFragment errorDetectionFragment;
     private static CurrentError2 currentError2;
     private static CurrentError3 currentError3;
     private static VoltageError0 voltageError0;
@@ -34,7 +26,7 @@ public class ErrorCorrectionFragment extends Fragment {
 
 
 
-    public ErrorCorrectionFragment(){
+    public ErrorDetectionFragment(){
 
     }
 

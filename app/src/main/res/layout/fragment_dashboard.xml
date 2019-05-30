@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:layout_weight=""
         android:foreground="@drawable/gray_round_rect">
 
         <ImageView
@@ -59,46 +60,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/signal_converter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/gray_round_rect"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="10dp">
 
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            app:srcCompat="@drawable/ic_converter" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:textStyle="bold"
-                android:text="Signal Converter"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/present"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:text="Present: Voltage"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/analytics"
@@ -146,8 +108,49 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textStyle="bold"
-            android:text="Error Detection and Correction"
+            android:text="Error Detection"
             android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/error_correction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/gray_round_rect"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:srcCompat="@drawable/ic_converter" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textStyle="bold"
+                android:text="Error Correction"
+                android:textSize="16sp" />
+
+            <!--<TextView
+                android:id="@+id/present"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="Present: Voltage"
+                android:textSize="12sp" />-->
+        </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

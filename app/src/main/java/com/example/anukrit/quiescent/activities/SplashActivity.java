@@ -64,21 +64,31 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-        if(!isLoggedIn){
+//        if(!isLoggedIn){
             new Handler().postDelayed(new Runnable() {
 
 
                 @Override
                 public void run() {
                     // This method will be executed once the timer is over
-    //                Intent i = new Intent(SplashActivity.this, MainActivity.class);
-    //                startActivity(i);
-    //                finish();
+//                   Intent i = new Intent(SplashActivity.this, MainActivity.class);
+//                    startActivity(i);
+//                    finish();
+                     if(isLoggedIn){
+                        FirebaseUser currentUser  = mAuth.getCurrentUser();
+                        if(currentUser != null)
+                            updateUI(currentUser);
+                        else
+                            shared.edit().putBoolean("loggedIn",false).apply();
+                    }
+                     else
                     googleSignInButton.setVisibility(View.VISIBLE);
+
                 }
             }, 3000);
 
-            googleSignInButton.setOnClickListener(new View.OnClickListener() {
+
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     googleSignInButton.setEnabled(false);
@@ -93,19 +103,19 @@ public class SplashActivity extends AppCompatActivity {
                 }
             });
             isLoggedIn=true;
-        }
+//        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(isLoggedIn){
+       /* if(isLoggedIn){
             FirebaseUser currentUser  = mAuth.getCurrentUser();
             if(currentUser != null)
                 updateUI(currentUser);
             else
                 shared.edit().putBoolean("loggedIn",false).apply();
-        }
+        }*/
     }
 
     private void updateUI(FirebaseUser firebaseUser)

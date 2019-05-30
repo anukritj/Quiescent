@@ -7,12 +7,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.anukrit.quiescent.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -43,10 +40,10 @@ public class DashboardFragment extends Fragment {
         ft.commit();
     }
 
-    @OnClick(R.id.signal_converter)
+   /* @OnClick(R.id.signal_converter)
     void convertSignal(){
 //        startActivity(GroupDetailsActivity.makeIntent());
-    }
+    }*/
 
     @OnClick(R.id.analytics)
     void checkAnalytics(){
@@ -61,10 +58,10 @@ public class DashboardFragment extends Fragment {
     @OnClick(R.id.callibration)
     void addErrorDetection(){
 //        startActivity(AddGroupActivity.makeIntent());
-        ErrorCorrectionFragment errorCorrectionFragment= new ErrorCorrectionFragment();
+        ErrorDetectionFragment errorDetectionFragment = new ErrorDetectionFragment();
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.navigation_fragment_container, errorCorrectionFragment);
+        ft.replace(R.id.navigation_fragment_container, errorDetectionFragment);
         ft.commit();
     }
 

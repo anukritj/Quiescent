@@ -28,7 +28,7 @@
             android:padding="3dp"
             android:textSize="26sp"
             android:layout_marginLeft="3dp"
-            android:text="Error Detection"
+            android:text="Error Correction"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:id="@+id/toolbar_title" />
