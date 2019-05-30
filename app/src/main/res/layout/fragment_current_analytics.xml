@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/error"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        >
+
+        <TableRow
+
+            android:id="@+id/tableRow"
+            android:layout_width="wrap_content"
+            android:layout_height="105dp"
+            android:layout_weight="1"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Channel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Value"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Channel 1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/channel1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Channel 2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="22sp"
+                android:id="@+id/channel2"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="Channel 3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/channel3"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textSize="22sp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:textSize="22sp"
+                android:text="Channel 4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/channel4"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:background="@drawable/cell_shape"
+                android:padding="5dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</android.support.constraint.ConstraintLayout>

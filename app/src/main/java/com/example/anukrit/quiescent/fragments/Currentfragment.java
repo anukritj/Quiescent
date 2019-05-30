@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -94,7 +95,7 @@ public class Currentfragment extends Fragment {
 
 
 //            startMqttSubscribe(getActivity(), "/channell/cur1");
-//            startMqttSubscribe(getActivity(), "/channel2/cur2");
+//           startMqttSubscribe(getActivity(), "/channel2/cur2");
 //            startMqttSubscribe(getActivity(), "/channel3/cur3");
 //            startMqttSubscribe(getActivity(), "/channel4/cur4");
 //
@@ -123,6 +124,7 @@ public class Currentfragment extends Fragment {
                     DatabaseUtils.getDatabaseReference().getDatabaseInstance().child("Device").child("Current").setValue(current);
                     GeneralUtils.toast(getContext(), "Value sent");
                 }
+
 
                 startMqtt(getActivity(),et1.getText().toString(),"/channel1/current"  );
                 Log.w("Current in Channel1 :",et1.getText().toString());
@@ -286,7 +288,7 @@ public class Currentfragment extends Fragment {
         });
     }
 
-    private void startMqttSubscribe(Context context, String topic) {
+   /* private void startMqttSubscribe(Context context, String topic) {
         mqttHelperSubscribe = new MqttHelperSubscribe(context,topic);
 //        while(mqttHelperSubscribe.getMqttAndroidClient().isConnected()){
             mqttHelperSubscribe.setCallback(new MqttCallbackExtended() {
@@ -307,6 +309,13 @@ public class Currentfragment extends Fragment {
                     if(topic.equals("/channel2/cur2")){
                         et2.setText(mqttMessage.toString());
                     }
+                    else  if(topic.equals("/channel3/cur3")){
+                        et3.setText(mqttMessage.toString());
+                    }
+                    else  if(topic.equals("/channel4/cur4")){
+                        et4.setText(mqttMessage.toString());
+                    }
+
 
 
                 }
@@ -314,18 +323,28 @@ public class Currentfragment extends Fragment {
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
                     Log.w("Debug", "Completed");
-                    try {
-                        mqttHelper.disconnect(mqttHelper.getMqttAndroidClient());
-                    } catch (
-                            MqttException e) {
-                        e.printStackTrace();
-                    }
+
                 }
 
                 });
 
         //}
     }
+*/
+    @Override
+    public void onDestroy() {
+        try {
 
+            if(mqttHelperSubscribe.getMqttAndroidClient()!=null) {
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channell/cur1");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel2/cur2");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel3/cur3");
+                mqttHelperSubscribe.unSubscribe(mqttHelperSubscribe.getMqttAndroidClient(), "/channel4/cur4");
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
+    }
 }

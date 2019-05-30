@@ -85,7 +85,11 @@ public class MqttHelperSubscribe {
                     disconnectedBufferOptions.setPersistBuffer(false);
                     disconnectedBufferOptions.setDeleteOldestMessages(false);
                     mqttAndroidClient.setBufferOpts(disconnectedBufferOptions);
-                    subscribeToTopic(subscriptionTopic);
+                    try {
+                        subscribeToTopic(mqttAndroidClient,subscriptionTopic,0);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
 
                   /*  try {
                         unSubscribe(mqttAndroidClient,subscriptionTopic);
@@ -109,7 +113,7 @@ public class MqttHelperSubscribe {
     }
 
 
-    private void subscribeToTopic(String topic) {
+   /* private void subscribeToTopic(String topic) {
         try {
             //String subscriptionTopic = "/cc32xx/ButtonPressEvtSw2";                                                      // TODO: change this
             mqttAndroidClient.subscribe(topic, 0, null, new IMqttActionListener() {
@@ -130,6 +134,21 @@ public class MqttHelperSubscribe {
             System.err.println("Exceptionst subscribing");
             ex.printStackTrace();
         }
+    }*/
+
+    public void subscribeToTopic(@NonNull MqttAndroidClient client,
+                          @NonNull final String topic, int qos) throws MqttException {
+        IMqttToken token = client.subscribe(topic, qos);
+        token.setActionCallback(new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken iMqttToken) {
+                Log.e("Debug", "Subscribe Successfully " + topic);
+            }
+            @Override
+            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+                Log.e("Debug", "Subscribe Failed " + topic);
+            }
+        });
     }
 
 
@@ -144,6 +163,21 @@ public class MqttHelperSubscribe {
             @Override
             public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
                 Log.e("Unsubscribe", "UnSubscribe Failed " + topic);
+            }
+        });
+    }
+
+    public void disconnect(@NonNull MqttAndroidClient client)
+            throws MqttException {
+        IMqttToken mqttToken = client.disconnect();
+        mqttToken.setActionCallback(new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken iMqttToken) {
+                Log.d("MQTT","Successfully disconnected");
+            }
+            @Override
+            public void onFailure(IMqttToken iMqttToken, Throwable throwable) {
+                Log.d("MQTT", "Failed to disconnected " + throwable.toString());
             }
         });
     }
