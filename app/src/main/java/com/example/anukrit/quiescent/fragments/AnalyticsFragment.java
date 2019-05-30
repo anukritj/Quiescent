@@ -36,7 +36,7 @@ public class AnalyticsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        VoltageFragment voltageFragment = new VoltageFragment();
+        VoltageAnalyticsFragment voltageAnalyticsFragment = new VoltageAnalyticsFragment();
         CurrentAnalyticsFragment currentAnalyticsFragment = new CurrentAnalyticsFragment();
         FrequencyFragment frequencyFragment = new FrequencyFragment();
 
@@ -45,7 +45,7 @@ public class AnalyticsFragment extends Fragment {
         TabLayoutAdapter tabLayoutAdapter = new TabLayoutAdapter(Objects.requireNonNull(getChildFragmentManager()));
         ViewPager viewPager = view.findViewById(R.id.viewPager);
         Log.e("AnalyticsFragment", "Analytics Fragment");
-        tabLayoutAdapter.addFragment(voltageFragment, "Voltage");
+        tabLayoutAdapter.addFragment(voltageAnalyticsFragment, "Voltage");
         tabLayoutAdapter.addFragment(currentAnalyticsFragment, "Current");
         tabLayoutAdapter.addFragment(frequencyFragment, "Frequency");
 
